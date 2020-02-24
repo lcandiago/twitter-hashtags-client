@@ -117,13 +117,16 @@ function App() {
       )}
 
       {hashtags.length > 0 && (
-        <ul className="hashtagList">
-          {hashtags.map(hashtag => (
-            <Hashtag key={hashtag} onClick={() => removeHashtag(hashtag)}>
-              {hashtag}
-            </Hashtag>
-          ))}
-        </ul>
+        <>
+          <ul className="hashtagList">
+            {hashtags.map(hashtag => (
+              <Hashtag key={hashtag} onClick={() => removeHashtag(hashtag)}>
+                {hashtag}
+              </Hashtag>
+            ))}
+          </ul>
+          <span className="unfollow-text">Click on the hashtag to unfollow</span>
+        </>
       )}
 
       {tweets.length > 0 && (

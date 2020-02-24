@@ -29,11 +29,33 @@
   margin-right: 10px;
 }
 
+@media (max-width: 600px) {
+  .tweet__username, .tweet__screenname, .tweet__date {
+    font-size: 12px;
+  }
+}
+
 .tweet__username {
   color: rgb(20, 23, 26);
   font-weight: bold;
 }
 
+@media (max-width: 600px) {
+  .tweet__screenname {
+    display: none;
+  }
+}
+
 .tweet__screenname, .tweet__date {
   color: rgb(101, 119, 134);
+}
+
+.tweet__text {
+  margin-top: 10px;
+}
+
+@media (max-width: 600px) {
+  .tweet__text {
+    font-size: 12px;
+  }
 }

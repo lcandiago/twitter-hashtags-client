@@ -21,7 +21,7 @@ export default function Tweet({ tweet }) {
           <span className="tweet__screenname">{`@${tweet.user.screen_name}`}</span>
           <span className="tweet__date">{date}</span>
         </div>
-        <div className="tweet_text">{tweet.full_text}</div>
+        <div className="tweet__text">{tweet.full_text}</div>
       </div>
     </li>
   );

@@ -1,5 +1,7 @@
 .container {
   max-width: 600px;
+  padding-left: 15px;
+  padding-right: 15px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -11,16 +13,24 @@
   margin-top: 30px;
 }
 
+@media (max-width: 600px) {
+  .logo {
+    font-size: 28px;
+  }
+}
+
 .hashtagForm {
-  width: 100%;
   margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .hashtagForm__label {
   color: rgb(20, 23, 26);
   font-weight: 800;
   font-size: 19px;
-  display: block;
+  width: 100%;
 }
 
 .hashtagForm__input {
@@ -31,6 +41,12 @@
   line-height: 1.3125;
   padding: 10px;
   width: 340px;
+}
+
+@media (max-width: 600px) {
+  .hashtagForm__input {
+    font-size: 16px;
+  }
 }
 
 .hashtagForm__button {
@@ -65,4 +81,9 @@
 .error__message {
   color: red;
   font-weight: bold;
+}
+
+.unfollow-text {
+  font-size: 12px;
+  color: #909090;
 }
