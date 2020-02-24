@@ -1,6 +1,6 @@
-import React, { useState, useRef } from 'react';
-import querystring from 'querystring';
-import axios from 'axios';
+import React, { useState, useRef, useEffect } from 'react';
+
+import getTweets from './utils/getTweets';
 
 import Hashtag from './components/Hashtag';
 import Tweet from './components/Tweet';
@@ -13,15 +13,19 @@ function App() {
 
   const inputEl = useRef(null);
 
-  async function getTweets(newHashtags) {
-    const { data } = await axios.get(
-      `${process.env.REACT_APP_API_URL}/tweets?${querystring.stringify({
-        newHashtags,
-      })}`
-    );
+  useEffect(() => {
+    inputEl.current.focus();
 
-    return data;
-  }
+    const localHashtags = localStorage.getItem('hashtags');
+
+    if (localHashtags) {
+      const parsedHashtags = JSON.parse(localHashtags);
+
+      setHashtags(parsedHashtags);
+
+      getTweets(parsedHashtags);
+    }
+  }, []);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -31,7 +35,10 @@ function App() {
 
     setHashtags(newHashtags);
 
+    localStorage.setItem('hashtags', JSON.stringify(newHashtags));
+
     inputEl.current.value = '';
+    inputEl.current.focus();
 
     const fetchedTweets = await getTweets(newHashtags);
     setTweets(fetchedTweets);
@@ -59,7 +66,7 @@ function App() {
       </form>
 
       {hashtags.length > 0 && (
-        <ul>
+        <ul className="hashtagList">
           {hashtags.map(hashtag => (
             <Hashtag key={hashtag}>{hashtag}</Hashtag>
           ))}
@@ -67,7 +74,7 @@ function App() {
       )}
 
       {tweets.length > 0 && (
-        <ul>
+        <ul className="tweetList">
           {tweets.map(tweet => (
             <Tweet key={tweet.id} tweet={tweet} />
           ))}

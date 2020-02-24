@@ -54,7 +54,7 @@ test('add hashtags, search tweets and render result', async () => {
 
   fireEvent.click(button);
 
-  const hashtagItem = getByText(hashtag);
+  const hashtagItem = getByText(`#${hashtag}`);
   expect(hashtagItem).toBeInTheDocument();
 
   const tweetMessage = await waitForElement(() => getByText(full_text));
