@@ -31,5 +31,5 @@ Builds the app for production to the `build` folder.<br />
 
 ## Future Updates
 
-[] Add Loading Icon when fetching data
-[] Add a new tweets indicator to search for the newest ones
+- [ ] Add Loading Icon when fetching data
+- [ ] Add a new tweets indicator to search for the newest ones
