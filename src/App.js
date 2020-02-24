@@ -44,6 +44,11 @@ function App() {
       return;
     }
 
+    if (hashtags.includes(value)) {
+      setError('Duplicated hashtag!');
+      return;
+    }
+
     setError('');
 
     const newHashtags = [...hashtags, value];
