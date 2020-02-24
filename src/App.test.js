@@ -36,13 +36,25 @@ test('add hashtags, search tweets and render result', async () => {
     data: [buildTweet({ id, full_text, user, created_at })],
   });
 
-  const { getByText, getByLabelText } = render(<App />);
+  const { getByText, getByLabelText, queryByText } = render(<App />);
 
   const input = getByLabelText(/hashtag/i);
   const button = getByText(/add hashtag/i);
 
+  // Expect Input and Button to be in the document
   expect(input).toBeInTheDocument();
   expect(button).toBeInTheDocument();
+
+  fireEvent.change(input, {
+    target: {
+      value: '',
+    },
+  });
+
+  fireEvent.click(button);
+
+  // Expect validation error when input is empty
+  expect(getByText(/you have to type some hashtag/i)).toBeInTheDocument();
 
   const hashtag = 'javascript';
 
@@ -54,11 +66,17 @@ test('add hashtags, search tweets and render result', async () => {
 
   fireEvent.click(button);
 
+  // Expect clearing errors
+  expect(queryByText(/you have to type some hashtag/i)).not.toBeInTheDocument();
+
   const hashtagItem = getByText(`#${hashtag}`);
+
+  // Expect the inputed hashtag to be in the document
   expect(hashtagItem).toBeInTheDocument();
 
   const tweetMessage = await waitForElement(() => getByText(full_text));
 
+  // Expect making an API call and fetched tweets to be in the document.
   expect(axios.get).toHaveBeenCalledTimes(1);
   expect(tweetMessage).toBeInTheDocument();
 });

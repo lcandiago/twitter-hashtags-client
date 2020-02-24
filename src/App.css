@@ -50,10 +50,19 @@
 .hashtagList {
   margin-top: 30px;
   display: flex;
+  flex-wrap: wrap;
 }
-
 
 .tweetList {
   margin-top: 30px;
   margin-bottom: 60px;
+}
+
+.error {
+  margin-top: 20px;
+}
+
+.error__message {
+  color: red;
+  font-weight: bold;
 }

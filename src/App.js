@@ -10,6 +10,7 @@ import './App.css';
 function App() {
   const [hashtags, setHashtags] = useState([]);
   const [tweets, setTweets] = useState([]);
+  const [error, setError] = useState('');
 
   const inputEl = useRef(null);
 
@@ -18,12 +19,17 @@ function App() {
 
     const localHashtags = localStorage.getItem('hashtags');
 
-    if (localHashtags) {
+    async function setInitialData() {
       const parsedHashtags = JSON.parse(localHashtags);
 
       setHashtags(parsedHashtags);
 
-      getTweets(parsedHashtags);
+      const fetchedTweets = await getTweets(parsedHashtags);
+      setTweets(fetchedTweets);
+    }
+
+    if (localHashtags) {
+      setInitialData();
     }
   }, []);
 
@@ -31,7 +37,16 @@ function App() {
     e.preventDefault();
     e.persist();
 
-    const newHashtags = [...hashtags, inputEl.current.value];
+    const { value } = inputEl.current;
+
+    if (value.length === 0) {
+      setError('You have to type some hashtag!');
+      return;
+    }
+
+    setError('');
+
+    const newHashtags = [...hashtags, value];
 
     setHashtags(newHashtags);
 
@@ -64,6 +79,12 @@ function App() {
           Add Hashtag
         </button>
       </form>
+
+      {error.length > 0 && (
+        <div className="error">
+          <span className="error__message">{error}</span>
+        </div>
+      )}
 
       {hashtags.length > 0 && (
         <ul className="hashtagList">
