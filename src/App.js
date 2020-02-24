@@ -11,6 +11,7 @@ function App() {
   const [hashtags, setHashtags] = useState([]);
   const [tweets, setTweets] = useState([]);
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const inputEl = useRef(null);
 
@@ -23,10 +24,12 @@ function App() {
       const parsedHashtags = JSON.parse(localHashtags);
 
       setHashtags(parsedHashtags);
+      setLoading(true);
 
       try {
         const fetchedTweets = await getTweets(parsedHashtags);
         setTweets(fetchedTweets);
+        setLoading(false);
       } catch (err) {
         setError(err);
       }
@@ -66,9 +69,12 @@ function App() {
     inputEl.current.value = '';
     inputEl.current.focus();
 
+    setLoading(true);
+
     try {
       const fetchedTweets = await getTweets(newHashtags);
       setTweets(fetchedTweets);
+      setLoading(false);
     } catch (err) {
       setError(err);
     }
@@ -81,9 +87,12 @@ function App() {
 
     localStorage.setItem('hashtags', JSON.stringify(newHashtags));
 
+    setLoading(true);
+
     try {
       const fetchedTweets = await getTweets(newHashtags);
       setTweets(fetchedTweets);
+      setLoading(false);
     } catch (err) {
       setError(err);
     }
@@ -125,8 +134,16 @@ function App() {
               </Hashtag>
             ))}
           </ul>
-          <span className="unfollow-text">Click on the hashtag to unfollow</span>
+          <span className="unfollow-text">
+            Click on the hashtag to unfollow
+          </span>
         </>
+      )}
+
+      {loading && (
+        <div className="loading">
+          <span className="loading__message">Loading...</span>
+        </div>
       )}
 
       {tweets.length > 0 && (
