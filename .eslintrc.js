@@ -29,6 +29,8 @@ module.exports = {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "camelcase": "off",
     "jsx-a11y/label-has-associated-control": "off",
-    "react/prop-types": "off"
+    "react/prop-types": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/no-noninteractive-element-interactions": "off"
   },
 };

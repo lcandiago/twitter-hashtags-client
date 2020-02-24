@@ -24,8 +24,12 @@ function App() {
 
       setHashtags(parsedHashtags);
 
-      const fetchedTweets = await getTweets(parsedHashtags);
-      setTweets(fetchedTweets);
+      try {
+        const fetchedTweets = await getTweets(parsedHashtags);
+        setTweets(fetchedTweets);
+      } catch (err) {
+        setError(err);
+      }
     }
 
     if (localHashtags) {
@@ -51,7 +55,9 @@ function App() {
 
     setError('');
 
-    const newHashtags = [...hashtags, value];
+    const newHashtag = value.startsWith('#') ? value.split('#')[1] : value;
+
+    const newHashtags = [...hashtags, newHashtag];
 
     setHashtags(newHashtags);
 
@@ -60,8 +66,27 @@ function App() {
     inputEl.current.value = '';
     inputEl.current.focus();
 
-    const fetchedTweets = await getTweets(newHashtags);
-    setTweets(fetchedTweets);
+    try {
+      const fetchedTweets = await getTweets(newHashtags);
+      setTweets(fetchedTweets);
+    } catch (err) {
+      setError(err);
+    }
+  }
+
+  async function removeHashtag(hashtag) {
+    const newHashtags = hashtags.filter(h => h !== hashtag);
+
+    setHashtags(newHashtags);
+
+    localStorage.setItem('hashtags', JSON.stringify(newHashtags));
+
+    try {
+      const fetchedTweets = await getTweets(newHashtags);
+      setTweets(fetchedTweets);
+    } catch (err) {
+      setError(err);
+    }
   }
 
   return (
@@ -94,7 +119,9 @@ function App() {
       {hashtags.length > 0 && (
         <ul className="hashtagList">
           {hashtags.map(hashtag => (
-            <Hashtag key={hashtag}>{hashtag}</Hashtag>
+            <Hashtag key={hashtag} onClick={() => removeHashtag(hashtag)}>
+              {hashtag}
+            </Hashtag>
           ))}
         </ul>
       )}
