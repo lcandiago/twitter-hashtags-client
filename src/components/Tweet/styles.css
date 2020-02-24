@@ -1,0 +1,39 @@
+.tweet {
+  padding: 10px;
+  display: flex;
+  border: 1px solid rgb(230, 236, 240);
+}
+
+.tweet__image-container, .tweet__body {
+  margin: 0 5px;
+}
+
+.tweet__image-container {
+  min-width: 50px;
+}
+
+.tweet__image {
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  border-radius: 9999px;
+  width: 49px;
+  height: 49px;
+}
+
+.tweet__infos {
+  display: flex;
+}
+
+.tweet__username, .tweet__screenname, .tweet__date {
+  font-size: 15px;
+  line-height: 1.3125;
+  margin-right: 10px;
+}
+
+.tweet__username {
+  color: rgb(20, 23, 26);
+  font-weight: bold;
+}
+
+.tweet__screenname, .tweet__date {
+  color: rgb(101, 119, 134);
+}

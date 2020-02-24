@@ -1,5 +1,5 @@
 .container {
-  max-width: 1000px;
+  max-width: 600px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -8,10 +8,12 @@
 
 .logo {
   color: rgba(29,161,242,1.00);
+  margin-top: 30px;
 }
 
 .hashtagForm {
   width: 100%;
+  margin-top: 30px;
 }
 
 .hashtagForm__label {
@@ -28,7 +30,7 @@
   font-weight: 400;
   line-height: 1.3125;
   padding: 10px;
-  width: 320px;
+  width: 340px;
 }
 
 .hashtagForm__button {
@@ -43,4 +45,15 @@
   font-size: 15px;
   min-height: 39px;
   cursor: pointer;
+}
+
+.hashtagList {
+  margin-top: 30px;
+  display: flex;
+}
+
+
+.tweetList {
+  margin-top: 30px;
+  margin-bottom: 60px;
 }
