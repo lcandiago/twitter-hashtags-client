@@ -106,17 +106,19 @@ function App() {
         <label htmlFor="hashtag" className="hashtagForm__label">
           Hashtag
         </label>
-        <input
-          ref={inputEl}
-          id="hashtag"
-          type="text"
-          placeholder="Which hashtag do you want to follow?"
-          className="hashtagForm__input"
-        />
+        <div className="hashtagForm__input-wrapper">
+          <input
+            ref={inputEl}
+            id="hashtag"
+            type="text"
+            placeholder="Which hashtag do you want to follow?"
+            className="hashtagForm__input"
+          />
 
-        <button type="submit" className="hashtagForm__button">
-          Add Hashtag
-        </button>
+          <button type="submit" className="hashtagForm__button">
+            Add Hashtag
+          </button>
+        </div>
       </form>
 
       {error.length > 0 && (
