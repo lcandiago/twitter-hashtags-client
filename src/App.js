@@ -136,9 +136,7 @@ function App() {
               </Hashtag>
             ))}
           </ul>
-          <span className="unfollow-text">
-            Click on the hashtag to unfollow
-          </span>
+          <span className="unfollow-text">Click hashtags to unfollow them</span>
         </>
       )}
 
