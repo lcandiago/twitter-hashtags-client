@@ -31,6 +31,7 @@
   font-weight: 800;
   font-size: 19px;
   width: 100%;
+  margin-bottom: 20px;
 }
 
 .hashtagForm__input {
@@ -41,6 +42,7 @@
   line-height: 1.3125;
   padding: 10px;
   width: 340px;
+  margin-right: 20px;
 }
 
 @media (max-width: 600px) {
