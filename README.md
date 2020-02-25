@@ -2,13 +2,17 @@
 
 Follow your favorite hashtags and don't miss the topics that interest you!
 
-## Features
+[**Demo Website**](https://twitter-hashtags-client.netlify.com/)
+
+## ✨ Features
 
 - Register some hashtags
 - Fetch tweets based on those hashtags
 - Hashtags are saved in Local Storage, so you don't have to type them again!
 
-## Setup
+## 🚀 Getting Started
+
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/lcandiago/twitter-hashtags-client)
 
 Using npm:
 
@@ -28,6 +32,11 @@ Launches the test runner in the interactive watch mode.<br />
 ### `npm run build`
 
 Builds the app for production to the `build` folder.<br />
+
+## 📝 Using with an API
+
+Edit `REACT_APP_API_URL` on `.env` file to match the server address.
+[Server repository](https://github.com/lcandiago/twitter-hashtags-server)
 
 ## Future Updates
 
